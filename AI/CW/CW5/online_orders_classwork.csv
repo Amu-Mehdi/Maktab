@@ -1,0 +1,13 @@
+﻿OrderID,City,Category,DeliveryMinutes,ItemsCount,PaymentMethod,DiscountPercent,OrderValue,CustomerRating,Returned
+O001,Tehran,Electronics,22,1,Card,0,120,5,No
+O002,Shiraz,Books,25,2,Cash,5,135,5,No
+O003,Tabriz,Clothing,28,2,Wallet,10,140,4,No
+O004,Tehran,Books,30,3,Card,0,150,4,No
+O005,Isfahan,Beauty,31,1,Card,15,165,4,No
+O006,Shiraz,Electronics,33,4,Wallet,5,175,4,No
+O007,Tehran,Clothing,35,2,Card,10,180,3,Yes
+O008,Rasht,Books,37,3,Cash,0,195,3,No
+O009,Isfahan,Beauty,40,4,Card,20,210,3,Yes
+O010,Tabriz,Clothing,42,5,Wallet,10,225,2,Yes
+O011,Rasht,Electronics,45,2,Cash,5,240,2,No
+O012,Tehran,Electronics,70,8,Card,0,900,1,Yes
