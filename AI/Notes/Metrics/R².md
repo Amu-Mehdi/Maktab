@@ -210,13 +210,9 @@ This single idea is the foundation of R².
 
 ## Formula
 
-\[
-R^2
-=
-1-
-\frac{SS_{res}}
-{SS_{tot}}
-\]
+$$
+R^2 = 1- \frac{SS_{res}} {SS_{tot}}
+$$
 
 ---
 
@@ -224,12 +220,9 @@ R^2
 
 ### 1. Residual Sum of Squares (SSres)
 
-\[
-SS_{res}
-=
-\sum_{i=1}^{n}
-(y_i-\hat y_i)^2
-\]
+$$
+SS_{res} = \sum_{i=1}^{n} (y_i-\hat y_i)^2
+$$
 
 This represents the **unexplained variation**.
 
@@ -237,31 +230,28 @@ It measures how much error remains after the model makes predictions.
 
 Where:
 
-- \(y_i\) = Actual value
-- \(\hat y_i\) = Predicted value
-- \(n\) = Number of observations
-- \(\Sigma\) = Summation over all samples
+- $y_i$ = Actual value
+- $\hat y_i$ = Predicted value
+- $n$ = Number of observations
+- $\Sigma$ = Summation over all samples
 
 The closer predictions are to actual values,
 
-the smaller \(SS_{res}\) becomes.
+the smaller $SS_{res}$ becomes.
 
 ---
 
 ### 2. Total Sum of Squares (SStot)
 
-\[
-SS_{tot}
-=
-\sum_{i=1}^{n}
-(y_i-\bar y)^2
-\]
+$$
+SS_{tot} = \sum_{i=1}^{n} (y_i-\bar y)^2
+$$
 
 This represents the **total variation** in the dataset.
 
 Where:
 
-- \(\bar y\) = Mean of the target values
+- $\bar y$ = Mean of the target values
 
 It answers the question:
 
@@ -271,13 +261,9 @@ It answers the question:
 
 ### 3. The Mean
 
-\[
-\bar y
-=
-\frac{1}{n}
-\sum_{i=1}^{n}
-y_i
-\]
+$$
+\bar y = \frac{1}{n} \sum_{i=1}^{n} y_i
+$$
 
 The mean acts as a **baseline predictor**.
 
@@ -285,15 +271,15 @@ If a model predicts only the mean,
 
 then
 
-\[
+$$
 SS_{res}=SS_{tot}
-\]
+$$
 
 which results in
 
-\[
+$$
 R^2=0
-\]
+$$
 
 ---
 
@@ -301,13 +287,9 @@ R^2=0
 
 The formula
 
-\[
-R^2
-=
-1-
-\frac{SS_{res}}
-{SS_{tot}}
-\]
+$$
+R^2 = 1- \frac{SS_{res}} {SS_{tot}}
+$$
 
 compares two quantities.
 
@@ -343,10 +325,9 @@ failed to explain
 
 The ratio
 
-\[
-\frac{SS_{res}}
-{SS_{tot}}
-\]
+$$
+\frac{SS_{res}} {SS_{tot}}
+$$
 
 tells us:
 
@@ -449,13 +430,9 @@ R² is computed to evaluate overall model quality.
 
 Therefore,
 
-\[
-SS_{res}
-=
-0.25+0.04+0.04+0.25+0.09
-=
-0.67
-\]
+$$
+SS_{res} = 0.25+0.04+0.04+0.25+0.09 = 0.67
+$$
 
 ---
 
@@ -463,13 +440,9 @@ SS_{res}
 
 Mean:
 
-\[
-\bar y
-=
-\frac{3+5+7+9+11}{5}
-=
-7
-\]
+$$
+\bar y = \frac{3+5+7+9+11}{5} = 7
+$$
 
 Now compute deviations from the mean.
 
@@ -483,46 +456,33 @@ Now compute deviations from the mean.
 
 Therefore,
 
-\[
-SS_{tot}
-=
-16+4+0+4+16
-=
-40
-\]
+$$
+SS_{tot} = 16+4+0+4+16 = 40
+$$
 
 ---
 
 ## Step 4 — Compute the Final Metric
 
-\[
-R^2
-=
-1-
-\frac{0.67}{40}
-\]
+$$
+R^2 = 1- \frac{0.67}{40}
+$$
 
-\[
-=
-1-0.01675
-\]
+$$
+= 1-0.01675
+$$
 
-\[
-=
-0.98325
-\]
+$$
+= 0.98325
+$$
 
 ---
 
 ## Final Result
 
-\[
-\boxed{
-R^2
-=
-0.983
-}
-\]
+$$
+\boxed{ R^2 = 0.983 }
+$$
 
 Interpretation:
 
@@ -600,9 +560,9 @@ higher is better.
 
 ### Best Possible Value
 
-\[
+$$
 R^2=1
-\]
+$$
 
 This means
 
@@ -618,13 +578,9 @@ Every predicted value equals its corresponding actual value.
 
 Common values are
 
-\[
-0
-\le
-R^2
-\le
-1
-\]
+$$
+0 \le R^2 \le 1
+$$
 
 However,
 
@@ -656,16 +612,15 @@ It is a dimensionless metric because it is a ratio of two quantities with identi
 |0|Equivalent to predicting the mean|
 |<0|Worse than predicting the mean|
 
-
 # Behavior Analysis
 
 Understanding **how R² behaves under different prediction scenarios** is far more important than simply memorizing its formula.
 
 Recall the definition:
 
-\[
+$$
 R^2 = 1 - \frac{SS_{res}}{SS_{tot}}
-\]
+$$
 
 Everything about R² can be understood by observing the relationship between:
 
@@ -745,9 +700,9 @@ The last error is
 
 After squaring:
 
-\[
+$$
 1500^2 = 2,250,000
-\]
+$$
 
 This single observation dominates the entire residual sum of squares.
 
@@ -896,15 +851,15 @@ This is equivalent to predicting the average.
 
 In this situation
 
-\[
+$$
 SS_{res}=SS_{tot}
-\]
+$$
 
 Therefore
 
-\[
+$$
 R^2=0
-\]
+$$
 
 Meaning
 
@@ -936,15 +891,15 @@ while actual values are
 
 Now
 
-\[
+$$
 SS_{res}>SS_{tot}
-\]
+$$
 
 which gives
 
-\[
+$$
 R^2<0
-\]
+$$
 
 This means
 
@@ -1115,9 +1070,9 @@ Always inspect MAE or RMSE as well.
 
 Because
 
-\[
+$$
 SS_{res}
-\]
+$$
 
 uses squared errors,
 
@@ -1417,8 +1372,6 @@ A complete regression evaluation typically reports
 together,
 
 providing both **absolute error information** and **overall model quality**.
-
-
 
 # Practical Examples
 
@@ -1915,13 +1868,9 @@ R² evaluates the proportion of variability in the target variable explained by 
 
 Mathematically,
 
-\[
-R^2
-=
-1-
-\frac{SS_{res}}
-{SS_{tot}}
-\]
+$$
+R^2 = 1- \frac{SS_{res}} {SS_{tot}}
+$$
 
 where
 
