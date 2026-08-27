@@ -572,13 +572,13 @@ log("\n" + "=" * 60)
 log("## Cross Validation (5-Fold Stratified)")
 log("=" * 60)
 
-# فقط مدل‌های اصلی (بدون MLP Bonus)
+
 cv_models = ["Logistic Regression", "KNN", "Decision Tree"]
 
-# بررسی وجود مدل‌ها در fitted_models
+
 available_cv_models = [name for name in cv_models if name in fitted_models]
 if not available_cv_models:
-    log("⚠️ No models available for Cross-Validation. Skipping CV.")
+    log("No models available for Cross-Validation. Skipping CV.")
 else:
     log("| Model | Precision (mean±std) | Recall (mean±std) | F1 (mean±std) |")
     log("|-------|---------------------|-------------------|---------------|")
@@ -588,11 +588,11 @@ else:
     cv_results = {}
 
     for name in available_cv_models:
-        model = fitted_models[name]  # استفاده از مدل آموزش‌دیده
+        model = fitted_models[name]  
         
         cv_start = time.time()
         cv = cross_validate(
-            model, X_train_scaled, y_train,  # استفاده از کل داده‌ی آموزش (نه Validation)
+            model, X_train_scaled, y_train,  
             cv=skf, scoring=scoring, n_jobs=-1
         )
         cv_time = time.time() - cv_start
@@ -616,12 +616,12 @@ else:
 
         log(f"| {name} | {mean_prec:.4f} ± {std_prec:.4f} | {mean_rec:.4f} ± {std_rec:.4f} | {mean_f1:.4f} ± {std_f1:.4f} |")
     
-    # بهترین مدل از CV
+  
     if cv_results:
         best_cv_model = max(cv_results, key=lambda k: cv_results[k]['f1'])
         log("\n" + "=" * 60)
-        log(f"🏆 Best model from CV: **{best_cv_model}** (CV F1 = {cv_results[best_cv_model]['f1']:.4f})")
-        log(f"⏱️  CV time: {cv_results[best_cv_model]['cv_time']:.3f}s")
+        log(f"Best model from CV: **{best_cv_model}** (CV F1 = {cv_results[best_cv_model]['f1']:.4f})")
+        log(f"CV time: {cv_results[best_cv_model]['cv_time']:.3f}s")
 
 log("=" * 60 + "\n")
 
@@ -649,16 +649,16 @@ if test_results:
     log("=" * 60)
     
     fastest_train = min(test_results, key=lambda k: test_results[k]['train_time'])
-    # اولویت با predict_time_test، در غیر این صورت predict_time_val
+    
     fastest_predict = min(
         test_results,
         key=lambda k: test_results[k].get('predict_time_test', test_results[k].get('predict_time_val', float('inf')))
     )
     
-    log(f"⚡ Fastest to train: **{fastest_train}** ({test_results[fastest_train]['train_time']:.3f}s)")
-    log(f"⚡ Fastest to predict: **{fastest_predict}** ({test_results[fastest_predict].get('predict_time_test', test_results[fastest_predict].get('predict_time_val', 0)):.3f}s)")
+    log(f"Fastest to train: **{fastest_train}** ({test_results[fastest_train]['train_time']:.3f}s)")
+    log(f"Fastest to predict: **{fastest_predict}** ({test_results[fastest_predict].get('predict_time_test', test_results[fastest_predict].get('predict_time_val', 0)):.3f}s)")
     
-    # تحلیل Trade-off
+   
     log("\n**Trade-off Analysis:**")
     log("- Logistic Regression: Best balance of speed and accuracy")
     log("- KNN: Slowest prediction (distance calculation to all training points)")
@@ -674,7 +674,7 @@ if test_results:
     log("## Final Model Selection")
     log("=" * 60)
     
-    # انتخاب با اولویت F1 و سپس AUC
+  
     best_model_name = None
     best_f1 = -1
     best_auc = -1
@@ -690,23 +690,23 @@ if test_results:
     
     if best_model_name and best_model_name in fitted_models:
         final_model = fitted_models[best_model_name]
-        log(f"🏆 Final model selected: **{best_model_name}**")
+        log(f"Final model selected: **{best_model_name}**")
         log(f"   • F1 (Test):   {test_results[best_model_name]['f1']:.4f}")
         log(f"   • AUC (Test):  {test_results[best_model_name].get('roc_auc', 'N/A')}")
         log(f"   • Train time:  {test_results[best_model_name]['train_time']:.3f}s")
         log(f"   • Predict time: {test_results[best_model_name].get('predict_time_test', test_results[best_model_name].get('predict_time_val', 0)):.3f}s")
     else:
-        log("⚠️ No suitable model found for final selection.")
+        log("No suitable model found for final selection.")
 
 # ================ Save Results ================
 log("\n" + "=" * 60)
 log("## Saving Results")
 log("=" * 60)
 
-# ذخیره گزارش نهایی
+
 save_report()
 
-# ذخیره بهترین مدل و اسکیلر
+
 if best_model_name and best_model_name in fitted_models:
     final_model = fitted_models[best_model_name]
     model_filename = best_model_name.lower().replace(" ", "_").replace("(", "").replace(")", "").replace(",", "_")
@@ -719,12 +719,12 @@ if best_model_name and best_model_name in fitted_models:
     )
     
     if model_path and scaler_path:
-        log(f"✅ Model saved: {model_path}")
-        log(f"✅ Scaler saved: {scaler_path}")
+        log(f"Model saved: {model_path}")
+        log(f"Scaler saved: {scaler_path}")
     else:
-        log("⚠️ Model or scaler could not be saved.")
+        log("Model or scaler could not be saved.")
 
-log("\n✅ Training pipeline completed successfully!")
+log("\nTraining pipeline completed successfully!")
 log("=" * 60 + "\n")
 
 # ============================================================================

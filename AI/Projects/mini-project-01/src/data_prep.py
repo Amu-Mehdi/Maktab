@@ -294,7 +294,7 @@ def prepare_pipeline_data(
     X_test_scaled = apply_scaler(scaler, X_test)
     
     if verbose:
-        print("✅ Data preparation complete!\n")
+        print("Data preparation complete!\n")
     
     return {
         "X_train": X_train,
@@ -331,13 +331,13 @@ def overview_to_markdown(overview: dict) -> str:
     for cls, count in overview['class_distribution'].items():
         pct = overview['class_distribution_pct'][cls]
         # Add emoji for fraud detection
-        label = "🔴 Fraud" if cls == 1 else "🟢 Legitimate"
+        label = "Fraud" if cls == 1 else "Legitimate"
         lines.append(f"| {label} | `{count:,}` | `{pct:.2f}%` |")
     
     # Imbalance warning
     fraud_pct = overview['class_distribution_pct'].get(1, 0)
     if fraud_pct < 5:
-        lines.append("\n> ⚠️ **Note:** This dataset is **highly imbalanced**. Accuracy alone is not a reliable metric.")
+        lines.append("\n> **Note:** This dataset is **highly imbalanced**. Accuracy alone is not a reliable metric.")
     
     # Missing values (if any)
     missing_per_col = {k: v for k, v in overview['missing_values_per_column'].items() if v > 0}
@@ -348,7 +348,7 @@ def overview_to_markdown(overview: dict) -> str:
         for col, count in missing_per_col.items():
             lines.append(f"| `{col}` | `{count:,}` |")
     else:
-        lines.append("\n✅ **No missing values found.**")
+        lines.append("\n**No missing values found.**")
     
     return "\n".join(lines)
 
@@ -356,7 +356,7 @@ def overview_to_markdown(overview: dict) -> str:
 def descriptive_stats_to_markdown(stats_df: pd.DataFrame) -> str:
 
     lines = []
-    lines.append("### 📈 Descriptive Statistics (Numerical Features)\n")
+    lines.append("### Descriptive Statistics (Numerical Features)\n")
     lines.append("| Statistic | " + " | ".join(stats_df.columns) + " |")
     lines.append("|-----------|" + "|".join(["------:" for _ in stats_df.columns]) + "|")
     
